@@ -31,3 +31,6 @@ $app->get('/', 'HomeController:index');
 
 $app->map(['get', 'post'], '/incidentes/{metodo}', App\Controllers\IncidentesController::class);
 $app->map(['get', 'delete', 'put'], '/incidentes/{metodo}/{id}', App\Controllers\IncidentesController::class);
+
+$app->map(['get', 'post'], '/tipos/{metodo}', App\Controllers\TiposController::class);
+$app->map(['get', 'delete', 'put'], '/tipos/{metodo}/{id}', App\Controllers\TiposController::class);

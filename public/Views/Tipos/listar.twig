@@ -1,0 +1,35 @@
+{% extends 'Layout/default.twig' %}
+
+{% block container %}
+	<h1 class="title">Listagem de Tipos</h1>
+
+	<a href="{{ base_url() }}/tipos/adicionar" class="btn btn-secondary float-right">Cadastrar</a>
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Título</th>
+	      <th scope="col">Status</th>
+	      <th scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for tipo in tipos %}
+		    <tr>
+		      <th scope="row">{{tipo.id}}</th>
+		      <td>{{tipo.titulo}}</td>
+		      <td>{{tipo.status == 0 ? 'Inativo' : 'Ativo'}}</td>
+		      <td class="actions">
+		      	<a class="btn btn-secondary" href="{{ base_url() }}/tipos/editar/{{ tipo.id }}">Editar</a>
+		      	<form action="{{ base_url() }}/tipos/deletar/{{ tipo.id }}" method="POST">
+		      		<input type="hidden" name="_METHOD" value="DELETE"/>
+		      		<input class="btn btn-danger" type="submit" value="Excluir">
+	      		</form>
+		      </td>
+		    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>	
+
+{% endblock %}
