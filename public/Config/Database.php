@@ -5,10 +5,10 @@ use PDO;
 
 class Database
 {
-	private $host 	  = 'localhost';
-	private $username = 'teste-requisito-rh';
-	private $password = 'teste-requisito-rh';
-	private $dbname	  = 'teste-requisito-rh';
+	private $host 	  = 'teste-requisito-rh-mysql';
+	private $username = 'teste-requisito';
+	private $password = 'teste-requisito';
+	private $dbname	  = 'teste-requisito';
 
 	public $conn;
 
