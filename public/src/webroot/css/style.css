@@ -1,0 +1,62 @@
+body {
+	color: #444;
+}
+
+.header {
+	padding: 20px 0 20px 0;
+	background-color: #fdd9d7;
+}
+
+.header img {
+	display: inline-table;
+	width: 100px;
+}
+
+.header h2 {
+	margin: 0 0 0 20px;
+	display: inline-table;
+}
+
+.title {
+	font-size: 30px;
+	margin: 20px 0;
+	padding-bottom: 5px;
+	display: inline-table;
+}
+
+.flash-alert {
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.btn {
+	margin: 20px;
+}
+
+.actions {
+	text-align: center;
+}
+
+.actions .btn {
+	margin: 5px;
+}
+
+.actions .btn,
+.actions form {
+	display: inline-block;
+}
+
+.list-unstyled {
+	margin-bottom: 0;
+	color: #721c24;
+}
+
+.wellcome {
+	text-align: center;
+}
+
+.wellcome h3 {
+	margin: 50px 0 10px 0;
+	font-size: 40px;
+}
