@@ -1,0 +1,37 @@
+{% extends 'Layout/default.twig' %}
+
+{% block container %}
+	<h1 class="title">Listagem de Incidentes</h1>
+
+	<a href="{{ base_url() }}/incidentes/adicionar" class="btn btn-secondary float-right">Cadastrar</a>
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Título</th>
+	      <th scope="col">Tipo</th>
+	      <th scope="col">Criticidade</th>
+	      <th scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for user in users %}
+		    <tr>
+		      <th scope="row">{{user.id}}</th>
+		      <td>{{user.titulo}}</td>
+		      <td>{{user.tipo}}</td>
+		      <td>{{user.criticidade}}</td>
+		      <td class="actions">
+		      	<a class="btn btn-secondary" href="{{ base_url() }}/incidentes/editar/{{ user.id }}">Editar</a>
+		      	<form action="{{ base_url() }}/incidentes/deletar/{{ user.id }}" method="POST">
+		      		<input type="hidden" name="_METHOD" value="DELETE"/>
+		      		<input class="btn btn-danger" type="submit" value="Excluir">
+	      		</form>
+		      </td>
+		    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>	
+
+{% endblock %}

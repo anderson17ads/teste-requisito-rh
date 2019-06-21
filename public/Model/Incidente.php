@@ -3,12 +3,12 @@ namespace App\Model;
 
 use App\Model\Model;
 
-class User extends Model
+class Incidente extends Model
 {
-	private $table = 'usuarios';
+	private $table = 'incidentes';
 
 	/**
-	 * Editar um usuário
+	 * Editar um incidente
 	 *
 	 * @param array $request
 	 * @param array $response
@@ -28,7 +28,7 @@ class User extends Model
 	}
 
 	/**
-	 * Adicioanr um usuário
+	 * Adicioanr um incidente
 	 *
 	 * @param array $request
 	 * @param array $response
@@ -38,16 +38,16 @@ class User extends Model
 	 */
 	public function adicionar($request, $response, $args)
 	{
-		$nome  = $request->getParam('nome');
-		$senha = $request->getParam('senha');
-		$email = $request->getParam('email');
+		$titulo 	   = $request->getParam('titulo');
+		$tipoId 	   = $request->getParam('tipo_id');
+		$criticidadeId = $request->getParam('criticidade_id');
 
 		try {
-			$stmt = $this->db->prepare("INSERT INTO {$this->table} (nome, senha, email) VALUES (:nome, :senha, :email)");
+			$stmt = $this->db->prepare("INSERT INTO {$this->table} (titulo, tipo_id, criticidade_id) VALUES (:titulo, :tipo_id, :criticidade_id)");
 
-			$stmt->bindParam(':nome', $nome);
-			$stmt->bindParam(':senha', $senha);
-			$stmt->bindParam(':email', $email);
+			$stmt->bindParam(':titulo', $titulo);
+			$stmt->bindParam(':tipo_id', $tipoId);
+			$stmt->bindParam(':criticidade_id', $criticidadeId);
 
 			$stmt->execute();
 
@@ -58,7 +58,7 @@ class User extends Model
 	}
 
 	/**
-	 * Editar um usuário
+	 * Editar um incidente
 	 *
 	 * @param array $request
 	 * @param array $response
@@ -68,19 +68,19 @@ class User extends Model
 	 */
 	public function editar($request, $response, $args)
 	{
-		$id   = $request->getAttribute('id');
-		$nome  = $request->getParam('nome');
-		$senha = $request->getParam('senha');
-		$email = $request->getParam('email');
+		$id    		   = $request->getAttribute('id');
+		$titulo  	   = $request->getParam('titulo');
+		$tipoId 	   = $request->getParam('tipo_id');
+		$criticidadeId = $request->getParam('criticidade_id');
 
-		$sql = "UPDATE {$this->table} SET nome = :nome, senha = :senha, email = :email WHERE id = {$id}";
+		$sql = "UPDATE {$this->table} SET titulo = :titulo, tipo_id = :tipo_id, criticidade_id = :criticidade_id WHERE id = {$id}";
 
 		try {
 			$stmt = $this->db->prepare($sql);
 
-			$stmt->bindParam('nome', $nome);
-			$stmt->bindParam('senha', $senha);
-			$stmt->bindParam('email', $email);
+			$stmt->bindParam('titulo', $titulo);
+			$stmt->bindParam('tipo_id', $tipoId);
+			$stmt->bindParam('criticidade_id', $criticidadeId);
 
 			$stmt->execute();
 
@@ -91,7 +91,7 @@ class User extends Model
 	}
 
 	/**
-	 * Deletar um usuário
+	 * Deletar um incidente
 	 *
 	 * @param int $id
 	 *
@@ -112,7 +112,7 @@ class User extends Model
 	}
 
 	/**
-	 * Pega um usuário
+	 * Pega um incidente
 	 *
 	 * @param int $id
 	 *
@@ -122,9 +122,9 @@ class User extends Model
 	{
 		if (!is_null($id)) {
 			$stmt = $this->db->query("SELECT * FROM {$this->table} WHERE id = {$id}");
-			$user = $stmt->fetch(\PDO::FETCH_OBJ);
+			$incidente = $stmt->fetch(\PDO::FETCH_OBJ);
 
-			if ($user) return $user;
+			if ($incidente) return $incidente;
 		}
 	}
 }
