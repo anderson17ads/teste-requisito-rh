@@ -5,18 +5,18 @@ version: "3.1"
 services:
 
     mysql:
-      image: mysql:8.0
+      image: mysql:5.6
       container_name: teste-requisito-rh-mysql
       working_dir: /application
       volumes:
         - .:/application
       environment:
         - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_DATABASE=teste-requisito-rh
-        - MYSQL_USER=teste-requisito-rh
-        - MYSQL_PASSWORD=teste-requisito-rh
+        - MYSQL_DATABASE=teste-requisito
+        - MYSQL_USER=teste-requisito
+        - MYSQL_PASSWORD=teste-requisito
       ports:
-        - "8094:3306"
+        - "3307:3306"
 
     webserver:
       image: nginx:alpine
