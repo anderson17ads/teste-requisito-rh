@@ -34,3 +34,6 @@ $app->map(['get', 'delete', 'put'], '/incidentes/{metodo}/{id}', App\Controllers
 
 $app->map(['get', 'post'], '/tipos/{metodo}', App\Controllers\TiposController::class);
 $app->map(['get', 'delete', 'put'], '/tipos/{metodo}/{id}', App\Controllers\TiposController::class);
+
+$app->map(['get', 'post'], '/criticidades/{metodo}', App\Controllers\CriticidadesController::class);
+$app->map(['get', 'delete', 'put'], '/criticidades/{metodo}/{id}', App\Controllers\CriticidadesController::class);

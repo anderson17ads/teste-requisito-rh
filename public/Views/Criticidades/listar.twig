@@ -1,0 +1,35 @@
+{% extends 'Layout/default.twig' %}
+
+{% block container %}
+	<h1 class="title">Listagem de Criticidades</h1>
+
+	<a href="{{ base_url() }}/criticidades/adicionar" class="btn btn-secondary float-right">Cadastrar</a>
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Título</th>
+	      <th scope="col">Status</th>
+	      <th scope="col"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for criticidade in criticidades %}
+		    <tr>
+		      <th scope="row">{{criticidade.id}}</th>
+		      <td>{{criticidade.titulo}}</td>
+		      <td>{{criticidade.status == 0 ? 'Inativo' : 'Ativo'}}</td>
+		      <td class="actions">
+		      	<a class="btn btn-secondary" href="{{ base_url() }}/criticidades/editar/{{ criticidade.id }}">Editar</a>
+		      	<form action="{{ base_url() }}/criticidades/deletar/{{ criticidade.id }}" method="POST">
+		      		<input type="hidden" name="_METHOD" value="DELETE"/>
+		      		<input class="btn btn-danger" type="submit" value="Excluir">
+	      		</form>
+		      </td>
+		    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>	
+
+{% endblock %}
