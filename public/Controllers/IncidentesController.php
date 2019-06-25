@@ -3,9 +3,21 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 
+use App\Model\Criticidade;
+use App\Model\Tipo;
+
 class IncidentesController extends Controller
 {
 	protected $model = 'Incidente';
+
+	public function init()
+	{
+		$this->Criticidade = new Criticidade;
+		$this->criticidades = $this->Criticidade->listar();
+
+		$this->Tipo = new Tipo;
+		$this->tipos = $this->Tipo->listar();
+	}
 
 	/**
 	 * Lista todos os incidentes
@@ -14,10 +26,10 @@ class IncidentesController extends Controller
 	 */
 	public function listar($request, $response, $args)
 	{
-		$users = $this->Incidente->listar($request, $response, $args);
+		$incidentes = $this->Incidente->listar();
 
 		return $this->view->render($response, 'Incidentes/listar.twig', [
-			'users' => $users
+			'incidentes' => $incidentes
 		]);
 	}
 
@@ -37,7 +49,10 @@ class IncidentesController extends Controller
 			}
 		}
 
-		return $this->view->render($response, 'Incidentes/adicionar.twig');
+		return $this->view->render($response, 'Incidentes/adicionar.twig', [
+			'tipos' 	   => $this->tipos,
+			'criticidades' => $this->criticidades
+		]);
 	}
 
 	/**
@@ -57,10 +72,12 @@ class IncidentesController extends Controller
 			}
 		}
 
-		$user = $this->Incidente->pegar($request->getAttribute('id'));
+		$incidente = $this->Incidente->pegar($request->getAttribute('id'));
 
 		return $this->view->render($response, 'Incidentes/editar.twig', [
-			'user' => $user
+			'incidente'    => $incidente,
+			'tipos' 	   => $this->tipos,
+			'criticidades' => $this->criticidades
 		]);
 	}
 

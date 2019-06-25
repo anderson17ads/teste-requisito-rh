@@ -11,6 +11,8 @@ abstract class Controller
 	{
 		$this->container = $container;
 
+		$this->loadModel();
+
 		$this->view->offsetSet('rand', rand(111111, 999999));
 	}
 
@@ -23,8 +25,6 @@ abstract class Controller
 
 	public function __invoke($request, $response, $args) {
 		$this->view->offsetSet('flash', $this->flash);
-		
-		$this->loadModel();
 
 		if (isset($args['metodo']) && method_exists($this, $args['metodo'])) {
 			return $this->{$args['metodo']}($request, $response, $args);
@@ -41,6 +41,20 @@ abstract class Controller
    		if (isset($this->model) && !is_null($this->model)) {
    			$class = "App\Model\\{$this->model}";
    			$this->container[$this->model] = new $class;
+
+   			$this->loadInit();
+   		}
+   	}
+
+   	/**
+   	 * Verifica se tem o método init, se existir ele carrega
+   	 *
+   	 * @return void
+   	 */
+   	public function loadInit()
+   	{
+   		if (method_exists($this, 'init')) {
+   			$this->init();
    		}
    	}
 }

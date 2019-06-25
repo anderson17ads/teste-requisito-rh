@@ -14,7 +14,7 @@ class TiposController extends Controller
 	 */
 	public function listar($request, $response, $args)
 	{
-		$tipos = $this->Tipo->listar($request, $response, $args);
+		$tipos = $this->Tipo->listar();
 
 		return $this->view->render($response, 'Tipos/listar.twig', [
 			'tipos' => $tipos

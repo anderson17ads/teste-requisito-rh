@@ -10,13 +10,9 @@ class Tipo extends Model
 	/**
 	 * Editar um tipo
 	 *
-	 * @param array $request
-	 * @param array $response
-	 * @param array $args
-	 *
 	 * @return array
 	 */
-	public function listar($request, $response, $args)
+	public function listar()
 	{
 		try {
 			$stmt = $this->db->query("SELECT * FROM {$this->table} ORDER BY id DESC");
