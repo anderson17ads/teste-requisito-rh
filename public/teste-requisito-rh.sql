@@ -29,7 +29,7 @@ CREATE TABLE `criticidades` (
   `data_criacao` datetime NOT NULL,
   `data_alteracao` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `criticidades` (
 
 LOCK TABLES `criticidades` WRITE;
 /*!40000 ALTER TABLE `criticidades` DISABLE KEYS */;
+INSERT INTO `criticidades` VALUES (1,'Alta',1,'2019-06-24 14:20:54','0000-00-00 00:00:00'),(2,'MÃ©dia',1,'2019-06-24 14:21:03','0000-00-00 00:00:00'),(3,'Baixa',1,'2019-06-24 14:21:09','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `criticidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +63,7 @@ CREATE TABLE `incidentes` (
   KEY `fk_incidentes_1_idx1` (`criticidade_id`),
   CONSTRAINT `fk_incidentes_1` FOREIGN KEY (`criticidade_id`) REFERENCES `criticidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_incidentes_tipos` FOREIGN KEY (`tipo_id`) REFERENCES `tipos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,6 +72,7 @@ CREATE TABLE `incidentes` (
 
 LOCK TABLES `incidentes` WRITE;
 /*!40000 ALTER TABLE `incidentes` DISABLE KEYS */;
+INSERT INTO `incidentes` VALUES (1,'Incidente 1',3,3,1,'teste!!','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,'Incidente 2',2,1,1,'Teste 2!','0000-00-00 00:00:00','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `incidentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +90,7 @@ CREATE TABLE `tipos` (
   `data_criacao` datetime NOT NULL,
   `data_alteracao` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +99,7 @@ CREATE TABLE `tipos` (
 
 LOCK TABLES `tipos` WRITE;
 /*!40000 ALTER TABLE `tipos` DISABLE KEYS */;
+INSERT INTO `tipos` VALUES (1,'Ataque Brute Force',1,'2019-06-24 13:56:48','0000-00-00 00:00:00'),(2,'Credencias vazadas',1,'2019-06-24 13:57:09','0000-00-00 00:00:00'),(3,'Ataque de DDoS',1,'2019-06-24 13:57:31','0000-00-00 00:00:00'),(4,'Atividades anormais de usuÃ¡rios',1,'2019-06-24 13:57:45','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `tipos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -109,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-21 11:33:17
+-- Dump completed on 2019-06-25  0:06:13
