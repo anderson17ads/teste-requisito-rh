@@ -4,7 +4,7 @@ body {
 
 .header {
 	padding: 20px 0 20px 0;
-	background-color: #fdd9d7;
+	background-color: #0a7fcf;
 }
 
 .header img {
@@ -15,6 +15,7 @@ body {
 .header h2 {
 	margin: 0 0 0 20px;
 	display: inline-table;
+	color: #fff;
 }
 
 .title {
@@ -31,7 +32,7 @@ body {
 }
 
 .btn {
-	margin: 20px;
+	margin: 20px 5px;
 }
 
 .actions {

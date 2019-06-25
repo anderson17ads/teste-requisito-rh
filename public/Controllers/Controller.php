@@ -26,35 +26,46 @@ abstract class Controller
 	public function __invoke($request, $response, $args) {
 		$this->view->offsetSet('flash', $this->flash);
 
+      $this->loadController($request);
+
 		if (isset($args['metodo']) && method_exists($this, $args['metodo'])) {
 			return $this->{$args['metodo']}($request, $response, $args);
 		}
-   	}
+	}
 
-   	/**
-   	 * Carrega o model da classe e existir
-   	 *
-   	 * @return void
-   	 */
-   	private function loadModel()
-   	{
-   		if (isset($this->model) && !is_null($this->model)) {
-   			$class = "App\Model\\{$this->model}";
-   			$this->container[$this->model] = new $class;
+   private function loadController($request)
+   {
+      if ($request && $request->getUri()->getPath()) {
+         $path = explode('/', $request->getUri()->getPath());
+         
+         if (isset($path[1])) $this->view->offsetSet('controller', $path[1]);
+      }
+   }
 
-   			$this->loadInit();
-   		}
-   	}
+	/**
+	 * Carrega o model da classe e existir
+	 *
+	 * @return void
+	 */
+	private function loadModel()
+	{
+		if (isset($this->model) && !is_null($this->model)) {
+			$class = "App\Model\\{$this->model}";
+			$this->container[$this->model] = new $class;
 
-   	/**
-   	 * Verifica se tem o método init, se existir ele carrega
-   	 *
-   	 * @return void
-   	 */
-   	public function loadInit()
-   	{
-   		if (method_exists($this, 'init')) {
-   			$this->init();
-   		}
-   	}
+			$this->loadInit();
+		}
+	}
+
+	/**
+	 * Verifica se tem o método init, se existir ele carrega
+	 *
+	 * @return void
+	 */
+	private function loadInit()
+	{
+		if (method_exists($this, 'init')) {
+			$this->init();
+		}
+	}
 }
